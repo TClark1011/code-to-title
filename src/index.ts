@@ -12,6 +12,10 @@ interface CodeToTitleOptions {
  * string will be formatted
  * @param {string[]} [options.replaceWithSpace=["-","_"]] A list of strings,
  * all occurrences of which in the input string will be replaced with a space
+ * @param {boolean} [options.breakupCamelCase=true] Weather or not to break up instances
+ * of camel case (eg; 'camelCase') with spaces.
+ * @param {boolean} [options.capitalizeWords=true] Weather or not to capitalize the first
+ * letter of every word.
  * @returns {string} The input string, formatted for use in a title
  */
 const codeToTitle = (

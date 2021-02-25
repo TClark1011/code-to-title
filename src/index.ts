@@ -1,8 +1,10 @@
 interface CodeToTitleOptions {
-	replaceWithSpace?: string | string[];
+	replaceWithSpace?: string | string[] | boolean;
 	breakupCamelCase?: string | boolean;
 	capitalizeWords?: boolean;
 }
+
+const defaultReplaceWithSpace = ["-", "_"];
 
 /**
  * Convert code formatted text to title formatted text
@@ -10,8 +12,10 @@ interface CodeToTitleOptions {
  * @param {string} input The input string that will be formatted
  * @param {CodeToTitleOptions} options Options indicating how the input
  * string will be formatted
- * @param {string | string[]} [options.replaceWithSpace=["-","_"]] A string or
- * list of strings that should be replaced with spaces.
+ * @param {string | string[] | boolean} [options.replaceWithSpace=["-","_"]] A string or
+ * list of strings that should be replaced with spaces. Can also be a boolean, if equal
+ * to boolean 'true', the default value is used, if equal to 'false', the option is
+ * disabled entirely.
  * @param {string | boolean} [options.breakupCamelCase=" "] How to break up
  * instances of camel case naming (eg; 'camelCase'). If passed a string, that
  * string will be used to breakup camel cases. If passed 'false', camel cases will
@@ -23,23 +27,27 @@ interface CodeToTitleOptions {
 const codeToTitle = (
 	input: string,
 	{
-		replaceWithSpace = ["-", "_"],
+		replaceWithSpace = defaultReplaceWithSpace,
 		breakupCamelCase = " ",
 		capitalizeWords = true,
 	}: CodeToTitleOptions = {}
 ): string => {
 	let result = input;
 
-	const replaceWithSpaceArr =
-		typeof replaceWithSpace === "string"
-			? [replaceWithSpace]
-			: replaceWithSpace;
-	for (const item of replaceWithSpaceArr) {
-		const specialCharsEscaped = item.replace(
-			/[-[\]{}()*+?.,\\^$|#\s]/g,
-			"\\$&"
-		);
-		result = result.replace(new RegExp(specialCharsEscaped, "g"), " ");
+	if (replaceWithSpace) {
+		const replaceWithSpaceArr =
+			typeof replaceWithSpace === "string"
+				? [replaceWithSpace]
+				: replaceWithSpace === true
+				? defaultReplaceWithSpace
+				: replaceWithSpace;
+		for (const item of replaceWithSpaceArr) {
+			const specialCharsEscaped = item.replace(
+				/[-[\]{}()*+?.,\\^$|#\s]/g,
+				"\\$&"
+			);
+			result = result.replace(new RegExp(specialCharsEscaped, "g"), " ");
+		}
 	}
 
 	if (breakupCamelCase) {

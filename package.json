@@ -1,7 +1,7 @@
 {
-	"name": "graphql-mock-store-backend",
+	"name": "code-to-title",
 	"version": "0.1",
-	"description": "A node graphql server for a mock store store api",
+	"description": "A function for formatting code-formatted text for use in titles",
 	"main": "index.js",
 	"repository": "https://github.com/TClark1011/graphql-mock-store-backend",
 	"author": "Thomas Clark <48699309+TClark1011@users.noreply.github.com>",

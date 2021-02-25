@@ -1,4 +1,4 @@
-import codeToTitle from "..";
+import codeToTitle from ".";
 
 const specialChars = ["&", "'", "\"", "\r", "\n", "\\", "\t", "\b", "\f"];
 

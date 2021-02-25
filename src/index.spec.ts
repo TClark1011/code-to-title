@@ -162,4 +162,27 @@ describe("Options", () => {
 		testBreakup(random);
 		testBreakup("     ");
 	});
+
+	test("Capitalize words", () => {
+		expect(
+			codeToTitle(
+				"camelCase kebab-lowercase kebab-Uppercase snake_lowercase snake_Uppercase",
+				{ capitalizeWords: false }
+			)
+		).toEqual(
+			"camel Case kebab lowercase kebab Uppercase snake lowercase snake Uppercase"
+		);
+	});
+
+	test("All disabled", () => {
+		const test =
+			"camelCase kebab-lowercase kebab-Uppercase snake_lowercase snake_Uppercase";
+		expect(
+			codeToTitle(test, {
+				replaceWithSpace: [],
+				breakupCamelCase: false,
+				capitalizeWords: false,
+			})
+		).toEqual(test);
+	});
 });

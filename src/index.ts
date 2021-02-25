@@ -35,7 +35,11 @@ const codeToTitle = (
 			? [replaceWithSpace]
 			: replaceWithSpace;
 	for (const item of replaceWithSpaceArr) {
-		result = result.replace(new RegExp(item, "g"), " ");
+		const specialCharsEscaped = item.replace(
+			/[-[\]{}()*+?.,\\^$|#\s]/g,
+			"\\$&"
+		);
+		result = result.replace(new RegExp(specialCharsEscaped, "g"), " ");
 	}
 
 	if (breakupCamelCase) {
@@ -46,7 +50,9 @@ const codeToTitle = (
 	}
 
 	if (capitalizeWords) {
-		result = result.replace(/\b[a-z]/gm, (match) => match.toUpperCase());
+		result = result.replace(/(?<=(\s|^))([a-z])/g, (match) =>
+			match.toUpperCase()
+		);
 	}
 
 	return result;

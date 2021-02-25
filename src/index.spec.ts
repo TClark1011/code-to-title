@@ -2,6 +2,25 @@ import codeToTitle from ".";
 
 const specialChars = ["&", "'", "\"", "\r", "\n", "\\", "\t", "\b", "\f"];
 
+const regexStrs = [
+	".",
+	"+",
+	"*",
+	"?",
+	"?:",
+	"?!",
+	"?=",
+	"(",
+	")",
+	"(a)",
+	"[",
+	"]",
+	"[abc]",
+	"{",
+	"}",
+	"{5}",
+];
+
 describe("Basic functionality", () => {
 	test("Default character swaps", () => {
 		expect(codeToTitle("one-two_three").toUpperCase()).toEqual(
@@ -28,14 +47,49 @@ describe("Basic functionality", () => {
 describe("Options", () => {
 	test("replaceWithSpace", () => {
 		const test = "swap@with Spaces_test";
+
+		const noSwapResult = "Swap@with Spaces_test";
+
+		/**
+		 * Shorthand function for running 'codeToTitle', passing the
+		 * above test string and passing the provided 'replaceWithSpace'
+		 * option.
+		 *
+		 * @param {string | string[]} replaceWithSpace The option to pass
+		 * as the 'replaceWithSpace' option
+		 * @param {string} [testOn=test] The string to test on. If not provided,
+		 * defaults to the test string above.
+		 * @returns {string} The result of passing 'test' to 'replaceWithSpace'
+		 */
+		const spaceSwap = (
+			replaceWithSpace: string | string[],
+			testOn: string = test
+		) => codeToTitle(testOn, { replaceWithSpace });
+
+		//# Standard test
+		expect(spaceSwap(["@", "_"])).toEqual("Swap With Spaces Test");
+
+		//# '@' symbol, as single string and in single item array
 		const atSwapResult = "Swap With Spaces_test";
+		expect(spaceSwap(["@"])).toEqual(atSwapResult);
+		expect(spaceSwap("@")).toEqual(atSwapResult);
 
-		expect(codeToTitle(test, { replaceWithSpace: ["@"] })).toEqual(
-			atSwapResult
-		);
+		//# Characters that are not in string
+		expect(spaceSwap("A")).toEqual(noSwapResult);
+		expect(spaceSwap("<")).toEqual(noSwapResult);
+		expect(spaceSwap("z")).toEqual(noSwapResult);
 
-		expect(codeToTitle(test, { replaceWithSpace: "@" })).toEqual(atSwapResult);
-		//? Test passing a single string instead of a string array
+		//# Characters used in regex (that are in the string)
+		for (const regexStr of regexStrs) {
+			expect(
+				spaceSwap(regexStr, `swap${regexStr}with Spaces${regexStr}test`)
+			).toEqual("Swap With Spaces Test");
+		}
+
+		//# Characters used in regex (that are NOT in the string)
+		for (const regexStr of regexStrs) {
+			expect(spaceSwap(regexStr)).toEqual(noSwapResult);
+		}
 	});
 	test("breakupCamelCase", () => {
 		const test = "camelCase testString";
@@ -89,13 +143,18 @@ describe("Options", () => {
 		testBreakup("_");
 		testBreakup("A");
 
-		//# Mutli-character breakups
+		//# Multi-character breakups
 		testBreakup("word");
 		testBreakup("WORD");
 
 		//# Special characters
 		for (const char of specialChars) {
 			testBreakup(char);
+		}
+
+		//# Special Regex Sequences
+		for (const str of regexStrs) {
+			testBreakup(str);
 		}
 
 		//# Misc. tests

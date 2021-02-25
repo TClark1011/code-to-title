@@ -55,19 +55,23 @@ describe("Options", () => {
 		 * above test string and passing the provided 'replaceWithSpace'
 		 * option.
 		 *
-		 * @param {string | string[]} replaceWithSpace The option to pass
+		 * @param {string | string[] | boolean} replaceWithSpace The option to pass
 		 * as the 'replaceWithSpace' option
 		 * @param {string} [testOn=test] The string to test on. If not provided,
 		 * defaults to the test string above.
 		 * @returns {string} The result of passing 'test' to 'replaceWithSpace'
 		 */
 		const spaceSwap = (
-			replaceWithSpace: string | string[],
+			replaceWithSpace: string | string[] | boolean,
 			testOn: string = test
 		) => codeToTitle(testOn, { replaceWithSpace });
 
 		//# Standard test
 		expect(spaceSwap(["@", "_"])).toEqual("Swap With Spaces Test");
+
+		//# Passing boolean values
+		expect(spaceSwap(true)).toEqual("Swap@with Spaces Test");
+		expect(spaceSwap(false)).toEqual("Swap@with Spaces_test");
 
 		//# '@' symbol, as single string and in single item array
 		const atSwapResult = "Swap With Spaces_test";

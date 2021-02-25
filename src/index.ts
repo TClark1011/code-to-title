@@ -1,5 +1,7 @@
 interface CodeToTitleOptions {
 	replaceWithSpace?: string[];
+	breakupCamelCase?: boolean;
+	capitalizeWords?: boolean;
 }
 
 /**
@@ -14,12 +16,28 @@ interface CodeToTitleOptions {
  */
 const codeToTitle = (
 	input: string,
-	{ replaceWithSpace = ["-", "_"] }: CodeToTitleOptions = {}
+	{
+		replaceWithSpace = ["-", "_"],
+		breakupCamelCase = true,
+		capitalizeWords = true,
+	}: CodeToTitleOptions = {}
 ): string => {
 	let result = input;
+
 	for (const item of replaceWithSpace) {
 		result = result.replace(new RegExp(item, "g"), " ");
 	}
+
+	if (breakupCamelCase) {
+		result = result.replace(/\B(?![a-z]+)[A-Z]/g, (match, index: number) =>
+			index > 0 ? " " + match : match
+		);
+	}
+
+	if (capitalizeWords) {
+		result = result.replace(/\b[a-z]/gm, (match) => match.toUpperCase());
+	}
+
 	return result;
 };
 

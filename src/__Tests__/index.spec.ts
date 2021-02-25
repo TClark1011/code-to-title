@@ -16,4 +16,9 @@ describe("Works", () => {
 	test("Capitalization", () => {
 		expect(codeToTitle("lower Upper lower")).toEqual("Lower Upper Lower");
 	});
+	test("Kitchen Sink", () => {
+		expect(codeToTitle("camelCase lowerUpper Upper-lower lower_Upper")).toEqual(
+			"Camel Case Lower Upper Upper Lower Lower Upper"
+		);
+	});
 });

@@ -1,17 +1,26 @@
-import * as dotenv from "dotenv";
-
-dotenv.config();
+interface CodeToTitleOptions {
+	replaceWithSpace?: string[];
+}
 
 /**
- * Generates a strign saying hello
+ * Convert code formatted text to title formatted text
  *
- * @param {string} from Where the hello is coming from
- * @returns {string} A string that says hello and where the hello came from
+ * @param {string} input The input string that will be formatted
+ * @param {CodeToTitleOptions} options Options indicating how the input
+ * string will be formatted
+ * @param {string[]} [options.replaceWithSpace=["-","_"]] A list of strings,
+ * all occurrences of which in the input string will be replaced with a space
+ * @returns {string} The input string, formatted for use in a title
  */
-const sayHiFrom = (from: string): string => {
-	return `Hello from ${from}!`;
+const codeToTitle = (
+	input: string,
+	{ replaceWithSpace = ["-", "_"] }: CodeToTitleOptions = {}
+): string => {
+	let result = input;
+	for (const item of replaceWithSpace) {
+		result = result.replace(new RegExp(item, "g"), " ");
+	}
+	return result;
 };
 
-console.log(sayHiFrom("index"));
-
-export default sayHiFrom;
+export default codeToTitle;

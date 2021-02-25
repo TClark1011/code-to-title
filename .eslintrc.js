@@ -28,7 +28,6 @@ module.exports = {
 		"linebreak-style": "off",
 		"quotes": ["error", "double"],
 		"semi": ["error", "always"],
-		"quote-props": ["error", "always"],
 		"prefer-arrow-callback": ["error"],
 		"brace-style": "error",
 		"no-mixed-spaces-and-tabs": "off",

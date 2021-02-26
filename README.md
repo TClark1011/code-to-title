@@ -43,8 +43,8 @@ Extra options can be specified via an optional object second parameter:
 
 **replaceWithSpace:** If provided a string or list of strings, replaces all occurrences of those strings with spaces. If given boolean `true`, the default value is used. If given boolean `false`, no characters will be replaced with spaces.
 
-- **Expected Type(s): **`string | string[] | boolean`
-- **Default Value: ** `["-", "_"]`
+- **Expected Type(s):**`string | string[] | boolean`
+- **Default Value:** `["-", "_"]`
 
 ```javascript
 codeToTitle("space@between", { replaceWithSpace: "@" }); // "Space Between"
@@ -54,8 +54,8 @@ codeToTitle("hello%world", { replaceWithSpace: false }); // "Hello%world"
 
 **breakupCamelCase:** If provided a string, that string will be used to breakup instances of camelCase. If provided boolean `true`, the default value is used. If provided boolean `false` instances of camelCase will be preserved.
 
-- **Expected Type(s): **`string | boolean`
-- **Default Value: **`" "`
+- **Expected Type(s):** `string | boolean`
+- **Default Value:**`" "`
 
 ```javascript
 codeToTitle("camelCase", { breakupCamelCase: "_" }); // "Camel_Case"
@@ -64,8 +64,8 @@ codeToTitle("varName", { breakupCamelCase: false }); // "VarName"
 
 **capitalizeWords:** Whether or not to capitalize the first letter of every word. Words are defined by spaces only.
 
-- **Expected Type(s): **`boolean`
-- **Default Value: **`true`
+- **Expected Type(s):**`boolean`
+- **Default Value:**`true`
 
 ```javascript
 codeToTitle("no caps for me", { capitalizeWords: false }); // "no caps for me"

@@ -1,9 +1,9 @@
 {
 	"name": "code-to-title",
 	"version": "1.0.0",
-	"description": "A function for formatting code-formatted text for use in titles",
+	"description": "A function for formatting code style text for display.",
 	"main": "build/index.js",
-	"repository": "https://github.com/TClark1011/graphql-mock-store-backend",
+	"repository": "https://github.com/TClark1011/code-to-title",
 	"author": "Thomas Clark <48699309+TClark1011@users.noreply.github.com>",
 	"license": "MIT",
 	"private": false,

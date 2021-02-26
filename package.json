@@ -1,6 +1,6 @@
 {
 	"name": "code-to-title",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A function for formatting code style text for display.",
 	"main": "build/index.js",
 	"repository": "https://github.com/TClark1011/code-to-title",

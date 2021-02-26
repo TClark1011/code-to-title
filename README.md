@@ -19,7 +19,15 @@ codeToTitle("camelCase-dash_underscore"); // "Camel Case Dash Underscore"
 
 ## Usage
 
-Simply import/require the 'codeToTitle' function:
+Install the package with your preferred package manager:
+
+`yarn add code-to-title`
+
+OR
+
+`npm install code-to-title`
+
+Import/require the 'codeToTitle' function:
 
 ```javascript
 import codeToTitle from "code-to-title";

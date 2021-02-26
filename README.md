@@ -57,7 +57,7 @@ Extra options can be specified via an optional object second parameter:
 ```javascript
 codeToTitle("space@between", { replaceWithSpace: "@" }); // "Space Between"
 codeToTitle("one@two-three", { replaceWithSpace: ["@", "-"] }); // "One Two Three"
-codeToTitle("hello%world", { replaceWithSpace: false }); // "Hello%world"
+codeToTitle("hello-world", { replaceWithSpace: false }); // "Hello%world"
 ```
 
 **breakupCamelCase:** If provided a string, that string will be used to breakup instances of camelCase. If provided boolean `true`, the default value is used. If provided boolean `false` instances of camelCase will be preserved.

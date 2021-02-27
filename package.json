@@ -1,6 +1,6 @@
 {
 	"name": "code-to-title",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "A function for formatting code style text for display.",
 	"main": "build/index.js",
 	"files": [

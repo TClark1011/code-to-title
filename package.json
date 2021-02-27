@@ -8,6 +8,21 @@
 	],
 	"repository": "https://github.com/TClark1011/code-to-title",
 	"author": "Thomas Clark <48699309+TClark1011@users.noreply.github.com>",
+	"keywords": [
+		"string",
+		"case",
+		"camel",
+		"camelCase",
+		"title",
+		"code",
+		"format",
+		"snake",
+		"pascal",
+		"kebab",
+		"capitalization",
+		"format",
+		"convert"
+	],
 	"license": "MIT",
 	"private": false,
 	"scripts": {

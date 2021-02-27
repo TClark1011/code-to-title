@@ -8,7 +8,7 @@ With all options left on default, the function in this package will:
 
 - Replace dashes and underscores with spaces
 - Break up instances of 'camelCase' with spaces
-- Capitalize the first letter of every word.
+- Capitalize the first letter of every word
 
 ```javascript
 codeToTitle("camelCase"); // "Camel Case"

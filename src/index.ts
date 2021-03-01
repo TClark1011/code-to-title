@@ -52,6 +52,8 @@ const codeToTitle = (
 
 	if (breakupCamelCase) {
 		const breakupWith = breakupCamelCase === true ? " " : breakupCamelCase;
+		//? If 'breakupCamelCase' is set to to boolean true, use a space, otherwise use the passed value
+
 		result = result.replace(/\B(?![a-z]+)[A-Z]/g, (match, index: number) =>
 			index > 0 ? breakupWith + match : match
 		);

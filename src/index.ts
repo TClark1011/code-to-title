@@ -58,9 +58,7 @@ const codeToTitle = (
 	}
 
 	if (capitalizeWords) {
-		result = result.replace(/(?<=(\s|^))([a-z])/g, (match) =>
-			match.toUpperCase()
-		);
+		result = result.replace(/(\s|^)([a-z])/g, (match) => match.toUpperCase());
 	}
 
 	return result;
